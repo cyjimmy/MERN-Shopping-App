@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductsSection from "../components/ProductsSection";
+import SideMenu from "../components/SideMenu";
+import Content from "../components/Content";
 
 export default function Products() {
   const [products, setPorducts] = useState([]);
@@ -19,11 +21,9 @@ export default function Products() {
     setPorducts(chosenProducts.data);
   };
   return (
-    <div>
-      <button onClick={categoryHandler}>All</button>
-      <button onClick={categoryHandler}>Movie</button>
-      <button onClick={categoryHandler}>Monitor</button>
+    <Content>
+      <SideMenu handler={categoryHandler} />
       <ProductsSection queryProducts={products} />
-    </div>
+    </Content>
   );
 }
