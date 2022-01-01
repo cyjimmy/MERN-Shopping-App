@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
+import { useCartUpdate } from "../context/CartContext";
 
 const Overlay = styled.div`
   position: fixed;
@@ -43,6 +44,13 @@ const ButtonGroup = styled.div`
 `;
 
 export default function Modal({ displayModal, closeModal, chosenProduct }) {
+  const updateCart = useCartUpdate();
+
+  const addItemToCart = () => {
+    closeModal();
+    updateCart();
+  };
+
   return (
     <>
       {displayModal && chosenProduct && (
@@ -53,7 +61,7 @@ export default function Modal({ displayModal, closeModal, chosenProduct }) {
             <div>{chosenProduct.name}</div>
             <div>$ {chosenProduct.price}</div>
             <ButtonGroup>
-              <Button>Add to Cart</Button>
+              <Button onClick={addItemToCart}>Add to Cart</Button>
               <Button onClick={closeModal}>Close</Button>
             </ButtonGroup>
           </ModalContainer>
