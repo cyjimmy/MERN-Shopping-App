@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const { Product, User } = require("./model");
+const productRoutes = require("./routes/products");
 
 dotenv.config();
 
@@ -11,8 +11,7 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI).then(() => {
   const app = express();
 
-  app.get("/products", async (req, res) => {
-  });
+  app.use("/products", productRoutes);
 
   app.listen(PORT, () => {
     console.log(`Now listening to ${PORT}`);
