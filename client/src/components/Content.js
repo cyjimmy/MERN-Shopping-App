@@ -5,6 +5,9 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
+  @media (max-width: 730px) {
+    flex-direction: column;
+  }
 `;
 
 export default function Content({ children }) {

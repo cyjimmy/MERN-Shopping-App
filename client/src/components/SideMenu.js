@@ -2,13 +2,20 @@ import React from "react";
 import styled from "styled-components";
 
 const SideBar = styled.div`
-  padding: 1.5rem;
-  padding-right: 3rem;
+  width: 8rem;
+  background-color: grey;
+
   & div {
     cursor: pointer;
-    margin-bottom: 1rem;
+    margin: 1rem;
     font-size: 1.2rem;
     font-weight: 500;
+  }
+
+  @media (max-width: 730px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 `;
 
