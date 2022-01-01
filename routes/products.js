@@ -11,12 +11,14 @@ router.get("/", async (req, res) => {
 
 router.get("/category/:category", async (req, res) => {
   const category = req.params.category;
-  const productsInCategory = await Product.find({ category: category });
-  res.json(productsInCategory)
+  const queryProducts = await Product.find({ category: category });
+  res.json(queryProducts)
 });
 
-router.get("/id/:id", (req, res) => {
-  console.log("retrieve product by id");
+router.get("/id/:id", async (req, res) => {
+  const id = req.params.id;
+  const queryProduct = await Product.find({ _id: id });
+  res.json(queryProduct)
 });
 
 module.exports = router;

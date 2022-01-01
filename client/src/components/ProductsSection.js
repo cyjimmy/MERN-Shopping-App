@@ -1,20 +1,46 @@
 import React, { useState } from "react";
 import { Card } from "react-bootstrap";
+import Modal from "./Modal";
 import "./ProductsSection.css";
+import axios from "axios";
 
 export default function ProductsSection({ queryProducts }) {
+  const [displayModal, setDisplayModal] = useState(false);
+  const [chosenProduct, setChosenProduct] = useState(null);
+
+  const cardClickHandler = async (e) => {
+    const queryProduct = await axios.get(
+      `/products/id/${e.target.parentNode.id}`
+    );
+    setChosenProduct(queryProduct.data[0]);
+    setDisplayModal(true);
+  };
+
+  const closeModalHandler = () => {
+    setDisplayModal(false);
+  };
+
   return (
-    <div className="cardsContainer">
-      {queryProducts &&
-        queryProducts.map((product) => (
-          <Card key={product._id}>
-            <Card.Img variant="top" src={product.imgUrl} />
-            <Card.Body>
-              <Card.Text>{product.name}</Card.Text>
-              <Card.Text className="cardDesciption">{product.price}</Card.Text>
-            </Card.Body>
-          </Card>
-        ))}
-    </div>
+    <>
+      <div className="cardsContainer">
+        {queryProducts &&
+          queryProducts.map((product) => (
+            <Card key={product._id} id={product._id} onClick={cardClickHandler}>
+              <Card.Img variant="top" src={product.imgUrl} />
+              <Card.Body>
+                <Card.Text>{product.name}</Card.Text>
+                <Card.Text className="cardDesciption">
+                  $ {product.price}
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          ))}
+      </div>
+      <Modal
+        displayModal={displayModal}
+        closeModal={closeModalHandler}
+        chosenProduct={chosenProduct}
+      />
+    </>
   );
 }
