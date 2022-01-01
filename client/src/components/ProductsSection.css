@@ -1,0 +1,16 @@
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.card {
+    display: div;
+    width: 15rem;
+    text-align: center;
+}
+
+.card img{
+    width:100%;
+}
