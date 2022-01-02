@@ -1,3 +1,4 @@
+import { set } from "mongoose";
 import React from "react";
 import { useState, useContext } from "react";
 
@@ -14,9 +15,18 @@ export function CartProvider({ children }) {
     setItemList((prevState) => [...prevState, item]);
   };
 
+  const removeItem = (item) => {
+    setItemList((prevState) => {
+      return prevState.filter((i) => {
+        return i !== item;
+      });
+    });
+  };
+
   const cartContext = {
     itemList: itemList,
     addItem: updateCart,
+    removeItem: removeItem,
   };
 
   return (

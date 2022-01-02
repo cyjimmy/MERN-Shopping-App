@@ -4,7 +4,7 @@ import Modal from "./Modal";
 import "./ProductsSection.css";
 import axios from "axios";
 
-export default function ProductsSection({ queryProducts }) {
+export default function ProductsSection({ queryProducts, loading }) {
   const [displayModal, setDisplayModal] = useState(false);
   const [chosenProduct, setChosenProduct] = useState(null);
 
@@ -19,6 +19,10 @@ export default function ProductsSection({ queryProducts }) {
   const closeModalHandler = () => {
     setDisplayModal(false);
   };
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>
