@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Button } from "react-bootstrap";
-import { useCartUpdate } from "../context/CartContext";
+import { useCart } from "../context/CartContext";
 
 const Overlay = styled.div`
   position: fixed;
@@ -44,11 +44,11 @@ const ButtonGroup = styled.div`
 `;
 
 export default function Modal({ displayModal, closeModal, chosenProduct }) {
-  const updateCart = useCartUpdate();
+  const updateCart = useCart();
 
-  const addItemToCart = () => {
+  const addItemToCart = (item) => {
     closeModal();
-    updateCart();
+    updateCart.addItem(item);
   };
 
   return (
@@ -61,7 +61,13 @@ export default function Modal({ displayModal, closeModal, chosenProduct }) {
             <div>{chosenProduct.name}</div>
             <div>$ {chosenProduct.price}</div>
             <ButtonGroup>
-              <Button onClick={addItemToCart}>Add to Cart</Button>
+              <Button
+                onClick={() => {
+                  addItemToCart(chosenProduct);
+                }}
+              >
+                Add to Cart
+              </Button>
               <Button onClick={closeModal}>Close</Button>
             </ButtonGroup>
           </ModalContainer>

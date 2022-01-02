@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar, Container } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import { useCart } from "../context/CartContext";
 import { Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ const BadgeStyle = {
 };
 
 export default function Header() {
-  const cartItemCount = useCart();
+  const cartItemCount = useCart().itemList.length;
 
   return (
     <Navbar bg="dark" variant="dark" sticky="top" style={{ height: "8%" }}>
@@ -29,15 +29,13 @@ export default function Header() {
         Products
       </Link>
       <Link to="/cart" style={LinkStyle}>
-        {cartItemCount ? (
+        {cartItemCount > 0 && (
           <>
             Cart{" "}
             <Badge bg="secondary" style={BadgeStyle}>
               {cartItemCount}
             </Badge>
           </>
-        ) : (
-          "Cart"
         )}
       </Link>
     </Navbar>

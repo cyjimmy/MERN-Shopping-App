@@ -10,6 +10,9 @@ const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI).then(() => {
   const app = express();
+  const cart = [];
+
+  app.use(express.json())
 
   app.use("/products", productRoutes);
 
