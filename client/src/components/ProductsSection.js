@@ -21,7 +21,7 @@ export default function ProductsSection({ queryProducts, loading }) {
   };
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className="cardsContainer"><div className="loadingText">Loading...</div></div>;
   }
 
   return (

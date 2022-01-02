@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const SideBar = styled.div`
   width: 8rem;
+  background-color: rgb(224, 224, 224);
 
   & div {
     cursor: pointer;

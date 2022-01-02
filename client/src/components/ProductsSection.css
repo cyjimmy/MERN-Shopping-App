@@ -1,9 +1,11 @@
 .cardsContainer {
+  min-height: 92vh;
   display: flex;
   flex-wrap: wrap;
   padding: 1rem;
   justify-content: center;
   width: 95%;
+  background-color: rgb(224, 224, 224);
 }
 
 .card {
@@ -13,10 +15,28 @@
   border: 0;
   transition: 0.5s;
   cursor: pointer;
+  padding: 1rem;
+  border-radius: 15px;
 }
 
 .card:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+@keyframes loadingAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
+.loadingText {
+  font-size: 3rem;
+  margin: auto;
+  transform: translateY(-150%);
+  animation: loadingAnimation 0.8s infinite linear alternate;
 }
 
 @media (max-width: 730px) {

@@ -94,7 +94,6 @@ export default function Cart() {
               bg="danger"
               style={ButtonStyle}
               onClick={() => {
-                console.log(item);
                 cartCtx.removeItem(item);
               }}
             >
