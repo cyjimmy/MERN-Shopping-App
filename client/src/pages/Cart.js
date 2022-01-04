@@ -84,7 +84,7 @@ export default function Cart() {
     <CartContent>
       {cartCtx.itemList &&
         cartCtx.itemList.map((item) => (
-          <ItemContainer key={item._id}>
+          <ItemContainer key={Math.random()}>
             <ImgContainer>
               <img src={item.imgUrl} alt="product" />
             </ImgContainer>
