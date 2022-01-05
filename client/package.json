@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://obscure-brook-66325.herokuapp.com",
+  "proxy": "https://rocky-badlands-80324.herokuapp.com/",
   "eslintConfig": {
     "extends": [
       "react-app",

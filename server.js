@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.PORT || 8080;
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.DATABASE_URL;
 
 mongoose.connect(MONGO_URI).then(() => {
   const app = express();
