@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Content from "../components/Content";
 import Hero from "../components/Hero";
 
 const HomeContent = styled.div`
