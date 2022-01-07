@@ -46,7 +46,7 @@ const HeroOverlay = styled.div`
 `;
 
 const navigateHandler = () => {
-  window.location.href = "/products";
+  window.location.href = "/product";
 };
 
 export default function Hero() {

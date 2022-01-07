@@ -25,7 +25,7 @@ export default function Header() {
       <Link to="/" style={LinkStyle}>
         Home
       </Link>
-      <Link to="/products" style={LinkStyle}>
+      <Link to="/product" style={LinkStyle}>
         Products
       </Link>
       <Link to="/cart" style={LinkStyle}>
