@@ -82,6 +82,15 @@ export default function Cart() {
 
   return (
     <CartContent>
+      <ItemContainer
+        style={{
+          height: "3.5rem",
+          fontSize: "1.2rem",
+          justifyContent: "center",
+        }}
+      >
+        Total: $ {total}
+      </ItemContainer>
       {cartCtx.itemList &&
         cartCtx.itemList.map((item) => (
           <ItemContainer key={Math.random()}>
@@ -91,7 +100,6 @@ export default function Cart() {
             <ItemName>{item.name}</ItemName>
             <ItemPrice>$ {item.price}</ItemPrice>
             <Button
-              bg="danger"
               style={ButtonStyle}
               onClick={() => {
                 cartCtx.removeItem(item);
@@ -101,11 +109,6 @@ export default function Cart() {
             </Button>
           </ItemContainer>
         ))}
-      <ItemContainer
-        style={{ height: "3rem", fontSize: "1.2rem", justifyContent: "center" }}
-      >
-        Total: $ {total}
-      </ItemContainer>
     </CartContent>
   );
 }

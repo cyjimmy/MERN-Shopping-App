@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeroContainer = styled.div`
   width: 100%;
@@ -45,17 +46,13 @@ const HeroOverlay = styled.div`
   backdrop-filter: blur(5px) brightness(50%);
 `;
 
-const navigateHandler = () => {
-  window.location.href = "/product";
-};
-
 export default function Hero() {
   return (
     <HeroContainer>
       <HeroOverlay />
       <HeroText>
         <div>Welcome to the MERN Store!</div>
-        <button onClick={navigateHandler}>Start Shopping</button>
+        <Link to="/product"><button>Start Shopping</button></Link>
       </HeroText>
     </HeroContainer>
   );
