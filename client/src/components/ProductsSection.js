@@ -21,7 +21,11 @@ export default function ProductsSection({ queryProducts, loading }) {
   };
 
   if (loading) {
-    return <div className="cardsContainer"><div className="loadingText">Loading...</div></div>;
+    return (
+      <div className="cardsContainer">
+        <div className="loadingText">Loading...</div>
+      </div>
+    );
   }
 
   return (
@@ -30,12 +34,12 @@ export default function ProductsSection({ queryProducts, loading }) {
         {queryProducts &&
           queryProducts.map((product) => (
             <Card key={product._id} id={product._id} onClick={cardClickHandler}>
-              <Card.Img variant="top" src={product.imgUrl} />
+              <div className="imgContainer">
+                <Card.Img loading="lazy" variant="top" src={product.imgUrl} />
+              </div>
               <Card.Body>
                 <Card.Text>{product.name}</Card.Text>
-                <Card.Text className="cardDesciption">
-                  $ {product.price}
-                </Card.Text>
+                <Card.Text>$ {product.price}</Card.Text>
               </Card.Body>
             </Card>
           ))}

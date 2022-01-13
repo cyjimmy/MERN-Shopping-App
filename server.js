@@ -11,7 +11,6 @@ const MONGO_URI = process.env.DATABASE_URL;
 
 mongoose.connect(MONGO_URI).then(() => {
   const app = express();
-  const cart = [];
 
   app.use(express.json());
 
@@ -21,10 +20,6 @@ mongoose.connect(MONGO_URI).then(() => {
     app.use(express.static(path.join(__dirname, "/client/build")));
     app.get("*", (req, res) => {
       res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-    });
-  } else {
-    app.get("/", (req, res) => {
-      res.send("Api running");
     });
   }
 
