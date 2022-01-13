@@ -18,6 +18,13 @@
   cursor: pointer;
   padding: 1rem;
   border-radius: 15px;
+  position: relative;
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
 
 .imgContainer {

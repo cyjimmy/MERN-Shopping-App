@@ -33,7 +33,8 @@ export default function ProductsSection({ queryProducts, loading }) {
       <div className="cardsContainer">
         {queryProducts &&
           queryProducts.map((product) => (
-            <Card key={product._id} id={product._id} onClick={cardClickHandler}>
+            <Card key={product._id} id={product._id}>
+              <div className="cardOverlay" onClick={cardClickHandler}></div>
               <div className="imgContainer">
                 <Card.Img loading="lazy" variant="top" src={product.imgUrl} />
               </div>
