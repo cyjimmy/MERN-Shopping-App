@@ -40,7 +40,7 @@ export default function ProductsSection({ queryProducts, loading }) {
               </div>
               <Card.Body>
                 <Card.Text>{product.name}</Card.Text>
-                <Card.Text>$ {product.price}</Card.Text>
+                <Card.Text>${product.price}</Card.Text>
               </Card.Body>
             </Card>
           ))}
