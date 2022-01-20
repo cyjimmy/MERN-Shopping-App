@@ -1,6 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
-const { Product, User } = require("../model");
+const { Product } = require("../model");
 
 const router = express.Router();
 

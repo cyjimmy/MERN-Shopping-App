@@ -27,17 +27,24 @@ const InputStyle = {
 export default function Header() {
   const cartItemCount = useCart().itemList.length;
   const [displayModal, setDisplayModal] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [createAccountSuccess, setCreateAccountSuccess] = useState(false);
   const emailRef = useRef();
   const pwRef = useRef();
 
-  const loginBtnHandler = () => {
+  const loginBtnHandler = async () => {
     if (!displayModal) {
       setDisplayModal(true);
     } else {
-      axios.post("/login", {
+      const loginResult = await axios.post("/login", {
         email: emailRef.current.value,
         password: pwRef.current.value,
       });
+      if (loginResult.data.length > 0) {
+        setLoginSuccess(true);
+      } else {
+        console.log("fail");
+      }
     }
   };
 
@@ -46,7 +53,8 @@ export default function Header() {
       email: emailRef.current.value,
       password: pwRef.current.value,
     });
-  }
+    setCreateAccountSuccess(true);
+  };
 
   const handleClose = () => {
     setDisplayModal(false);
@@ -73,25 +81,47 @@ export default function Header() {
           )}
         </Link>
         <Navbar.Collapse className="justify-content-end">
-          <Button style={{ margin: "1em" }} onClick={loginBtnHandler}>
-            Login
-          </Button>
+          {!loginSuccess && !createAccountSuccess && (
+            <Button style={{ margin: "1em" }} onClick={loginBtnHandler}>
+              Login
+            </Button>
+          )}
         </Navbar.Collapse>
       </Navbar>
       <Modal show={displayModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ display: "flex", flexDirection: "column" }}>
-          <input ref={emailRef} style={InputStyle} placeholder="Email"></input>
-          <input ref={pwRef} style={InputStyle} placeholder="Password"></input>
-          <Button style={{ marginTop: "5px" }} onClick={loginBtnHandler}>
-            Login
-          </Button>
-          <Button style={{ marginTop: "5px" }} onClick={newAccountBtnHandler}>
-            Create Account
-          </Button>
-        </Modal.Body>
+        {!loginSuccess && !createAccountSuccess && (
+          <Modal.Body style={{ display: "flex", flexDirection: "column" }}>
+            <input
+              ref={emailRef}
+              style={InputStyle}
+              placeholder="Email"
+            ></input>
+            <input
+              ref={pwRef}
+              style={InputStyle}
+              placeholder="Password"
+            ></input>
+            <Button style={{ marginTop: "5px" }} onClick={loginBtnHandler}>
+              Login
+            </Button>
+            <Button style={{ marginTop: "5px" }} onClick={newAccountBtnHandler}>
+              Create Account
+            </Button>
+          </Modal.Body>
+        )}
+        {loginSuccess && (
+          <Modal.Body style={{ textAlign: "center", fontSize: "1.5rem" }}>
+            Welcome back!
+          </Modal.Body>
+        )}
+        {createAccountSuccess && (
+          <Modal.Body style={{ textAlign: "center", fontSize: "1.5rem" }}>
+            Account created!
+          </Modal.Body>
+        )}
       </Modal>
     </>
   );
