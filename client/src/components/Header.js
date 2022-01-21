@@ -40,10 +40,8 @@ export default function Header() {
         email: emailRef.current.value,
         password: pwRef.current.value,
       });
-      if (loginResult.data.length > 0) {
+      if (loginResult.data == "success") {
         setLoginSuccess(true);
-      } else {
-        console.log("fail");
       }
     }
   };
